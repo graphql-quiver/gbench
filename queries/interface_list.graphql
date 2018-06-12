@@ -1,0 +1,8 @@
+query {
+  listOfInterfaces {
+    id
+    ...on Query {
+      string
+    }
+  }
+}

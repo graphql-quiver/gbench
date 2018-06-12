@@ -1,0 +1,5 @@
+graphene
+graphql-core>=2.1rc1
+uvloop==0.8.1
+japronto
+ujson

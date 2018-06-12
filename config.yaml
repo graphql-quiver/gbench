@@ -1,0 +1,67 @@
+servers:
+- name: Graphene
+  endpoint: http://localhost:8080/graphql
+  run:
+    command: python app.py
+    cwd: servers/japronto-graphene/
+    startupTime: 2s
+  warmup:
+    concurrency: 1
+    duration: 5s
+
+- name: Graphene+Quiver
+  endpoint: http://localhost:8080/quiver
+  run:
+    command: python app.py
+    cwd: servers/japronto-graphene/
+    startupTime: 2s
+  warmup:
+    concurrency: 1
+    duration: 5s
+
+- name: Node
+  endpoint: http://localhost:4000/graphql
+  run:
+    command: node app.js
+    cwd: servers/node-express/
+    startupTime: 2s
+  warmup:
+    concurrency: 1
+    duration: 5s
+
+- name: Sangria
+  endpoint: http://localhost:8081/graphql
+  run:
+    command: sbt run
+    cwd: servers/sangria-akka/
+    startupTime: 15s
+  warmup:
+    concurrency: 1
+    duration: 10s
+
+- name: Go
+  endpoint: http://localhost:8080/query
+  run:
+    command: go run schema.go server.go
+    cwd: servers/go/
+    startupTime: 15s
+  warmup:
+    concurrency: 1
+    duration: 5s
+
+queries:
+- name: Basic
+  filename: queries/basic.graphql
+  expectedResultFilename: queries/basic.json
+
+- name: Object List
+  filename: queries/object_list.graphql
+  expectedResultFilename: queries/object_list.json
+
+- name: Scalar List
+  filename: queries/scalar_list.graphql
+  expectedResultFilename: queries/scalar_list.json
+
+- name: Introspection
+  filename: queries/introspection.graphql
+  # expectedResultFilename: queries/scalar_list.json
