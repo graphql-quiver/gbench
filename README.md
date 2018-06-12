@@ -2,7 +2,7 @@
 
 GBench is a GraphQL benchmarking tool. It's highly inspired by Hasura's work on [graphql-bench](https://github.com/hasura/graphql-bench/) but with different design and goals in mind.
 
-Gbench will use a config file to read the servers and queries to be executed.
+Gbench will use a [config file](#config-file) to read the servers and queries to be executed.
 
 ## Requirements
 
@@ -20,11 +20,9 @@ Gbench have currently two commands available
 
 ### Benchmark
 
-`python gbench.py benchmark`: will benchmark Servers and queries from a given [`config.yaml`](./config.yaml) and output into a json file.
+`python gbench.py benchmark` will benchmark Servers and queries from a given [`config.yaml`](#config-file) and output into an optional json file (`results.json`)
 
-```
-# config.yaml is the config input
-# results.json is the output file
+```shell
 python gbench.py benchmark config.yaml results.json
 ```
 
@@ -75,6 +73,8 @@ queries:
 
 Currently, for benchmarking you will need to be able to execute the server locally.
 That means that for benchmarking `go` you will need `go` installed locally.
+
+This are the currently available languages for benchmark:
 
 - Python (with Japronto)
 - Node (Express)
