@@ -161,7 +161,7 @@ class Program(object):
         with open(input, 'r') as f:
             contents = f.read()
         bench_results = json.loads(contents)
-        from plot import run_dash_server
+        from dashboard import run_dash_server
         run_dash_server(bench_results, debug=True)
 
     def benchmark(self, config, output=None):

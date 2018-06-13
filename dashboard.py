@@ -92,7 +92,7 @@ def run_dash_server(bench_results, debug=False):
                 {'label': 'Mean', 'value': 'MEAN'},
                 # {'label': 'Errors', 'value': 'ERRORS'},
             ],
-            value='P95'
+            value='P99'
         ),
 
         dcc.Graph(id='response-time-vs-query'),

@@ -80,3 +80,17 @@ This are the currently available languages for benchmark:
 - Node (Express)
 - Sangia (Akka)
 - Go
+
+## Docker
+
+You can build the dashboard image in docker by doing:
+
+```
+docker build -t quiver/gbench .
+```
+
+And to run the dashboard:
+
+```
+docker run -p 8050:8050 quiver/gbench
+```
