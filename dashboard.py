@@ -145,4 +145,4 @@ def run_dash_server(bench_results, debug=False):
         }
         return figure
 
-    app.run_server(host="0.0.0.0", debug=debug)
+    app.run_server(host="0.0.0.0", port=8080, debug=debug)

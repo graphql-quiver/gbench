@@ -7,4 +7,6 @@ COPY dashboard.py /app/dashboard.py
 COPY gbench.py /app/gbench.py
 COPY results.json /app/results.json
 
-ENTRYPOINT ["python3", "-u", "/app/gbench.py", "dashboard", "/app/results.json"]
+EXPOSE 8080
+CMD ["python3", "-u", "/app/gbench.py", "dashboard", "/app/results.json"]
+# ENTRYPOINT ["python3", "-u", "/app/gbench.py", "dashboard", "/app/results.json"]
