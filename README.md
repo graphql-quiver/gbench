@@ -36,7 +36,8 @@ Also, after benchmarking a dashboard server will automatically run with the resu
 
 The Gbench config file is in a `yaml` format. It have two main sections: `servers` and `queries`.
 
-For servers:
+The `servers` section indicates in which servers we are going to run the benchmark.
+Also, we will indicate what is the startup command for running it and if there is any warmup time we should spend before benchmarking.
 
 ```yaml
 servers:
@@ -57,7 +58,7 @@ servers:
     duration: 5s
 ```
 
-For queries:
+The `queries` section indicates all the different queries that we want to benchmark, in all servers.
 
 ```yaml
 queries:
@@ -92,5 +93,5 @@ docker build -t quiver/gbench .
 And to run the dashboard:
 
 ```
-docker run -p 8050:8050 quiver/gbench
+docker run -p 8080:8080 quiver/gbench
 ```
