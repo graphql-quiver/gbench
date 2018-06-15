@@ -2,7 +2,7 @@ servers:
 - name: Graphene
   endpoint: http://localhost:8080/graphql
   run:
-    command: python app.py
+    command: python3 app.py
     cwd: servers/japronto-graphene/
     startupTime: 2s
   warmup:
@@ -12,14 +12,14 @@ servers:
 - name: Graphene+Quiver
   endpoint: http://localhost:8080/quiver
   run:
-    command: python app.py
+    command: python3 app.py
     cwd: servers/japronto-graphene/
     startupTime: 2s
   warmup:
     concurrency: 1
     duration: 5s
 
-- name: Node
+- name: Node Express
   endpoint: http://localhost:4000/graphql
   run:
     command: node app.js
@@ -29,6 +29,15 @@ servers:
     concurrency: 1
     duration: 5s
 
+- name: Node Micro
+  endpoint: http://localhost:4000/graphql
+  run:
+    command: node app.js
+    cwd: servers/node-micro/
+    startupTime: 2s
+  warmup:
+    concurrency: 1
+    duration: 5s
 - name: Sangria
   endpoint: http://localhost:8081/graphql
   run:

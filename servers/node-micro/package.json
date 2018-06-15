@@ -1,0 +1,12 @@
+{
+  "name": "node-micro",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Syrus",
+  "license": "MIT",
+  "dependencies": {
+    "express-graphql": "^0.6.12",
+    "graphql": "^0.13.2",
+    "micro": "^9.3.2"
+  }
+}

@@ -1,6 +1,6 @@
-var express = require("express");
-var graphqlHTTP = require("express-graphql");
-var schema = require("./schema");
+const express = require("express");
+const graphqlHTTP = require("express-graphql");
+const schema = require("./schema");
 
 // The root provides a resolver function for each API endpoint
 
