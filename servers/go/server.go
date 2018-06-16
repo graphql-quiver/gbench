@@ -5,11 +5,13 @@ import (
 	"net/http"
 	"github.com/graph-gophers/graphql-go"
 	"github.com/graph-gophers/graphql-go/relay"
+	"runtime"
 )
 
 var schema *graphql.Schema
 
 func init() {
+	runtime.GOMAXPROCS(1);
 	schema = graphql.MustParseSchema(Schema, &baseResolver)
 }
 
