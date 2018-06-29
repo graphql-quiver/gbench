@@ -1,7 +1,9 @@
+
+
 const cluster = require('cluster');
 
 if(cluster.isMaster) {
-    const numWorkers = require('os').cpus().length;
+    const numWorkers = require('os').cpus().length / 2;
 
     console.log('Master cluster setting up ' + numWorkers + ' workers...');
 
@@ -19,15 +21,11 @@ if(cluster.isMaster) {
         cluster.fork();
     });
 } else {
-    const micro = require('micro')
-    const graphqlHTTP = require("express-graphql");
-    const schema = require("./schema");
+    const micro = require('micro');
+    const graphqlHandler = require('./graphql-handler');
     // The root provides a resolver function for each API endpoint
-    const server = micro(
-        graphqlHTTP({
-            schema: schema,
-            graphiql: false
-        }))
+    const server = micro(graphqlHandler(require("./schema")));
 
     server.listen(4000);
 }
+

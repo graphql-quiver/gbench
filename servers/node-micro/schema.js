@@ -16,6 +16,9 @@ var Base = new GraphQLInterfaceType({
     id: {
       type: GraphQLString
     }
+  },
+  resolveType() {
+    return Query;
   }
 });
 var Query = new GraphQLObjectType({
@@ -39,7 +42,7 @@ var Query = new GraphQLObjectType({
       resolve: () => listOfObjects
     },
     listOfInterfaces: {
-      type: Base,
+      type: GraphQLList(Base),
       resolve: () => listOfObjects
     }
   })

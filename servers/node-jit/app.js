@@ -19,26 +19,11 @@ if(cluster.isMaster) {
         cluster.fork();
     });
 } else {
-    const express = require("express");
-    const graphqlHTTP = require("express-graphql");
-    const schema = require("./schema");
+    const micro = require('micro');
+    const graphqlHandler = require('./graphql-handler');
+    // The root provides a resolver function for each API endpoint
+    const server = micro(graphqlHandler(require("./schema", process.argv[2] === "disable-leaf")));
 
-// The root provides a resolver function for each API endpoint
-
-    const app = express();
-    app.use(
-        "/graphql",
-        graphqlHTTP({
-            schema: schema,
-            graphiql: false
-        })
-    );
-    app.use(
-        "/graphiql",
-        graphqlHTTP({
-            schema: schema,
-            graphiql: true
-        })
-    );
-    app.listen(4000);
+    server.listen(4000);
 }
+

@@ -1,4 +1,14 @@
 servers:
+- name: Sangria
+  endpoint: http://localhost:8081/graphql
+  run:
+    command: sbt run
+    cwd: servers/sangria-akka/
+    startupTime: 15s
+  warmup:
+    concurrency: 1
+    duration: 10s
+
 - name: Graphene
   endpoint: http://localhost:8080/graphql
   run:
@@ -39,15 +49,25 @@ servers:
     concurrency: 1
     duration: 5s
 
-- name: Sangria
-  endpoint: http://localhost:8081/graphql
+- name: Node JIT - No leaf
+  endpoint: http://localhost:4000/graphql
   run:
-    command: sbt run
-    cwd: servers/sangria-akka/
-    startupTime: 15s
+    command: node app.js disable-leaf
+    cwd: servers/node-jit/
+    startupTime: 2s
   warmup:
     concurrency: 1
-    duration: 10s
+    duration: 5s
+
+- name: Node JIT - Leaf
+  endpoint: http://localhost:4000/graphql
+  run:
+    command: node app.js
+    cwd: servers/node-jit/
+    startupTime: 2s
+  warmup:
+    concurrency: 1
+    duration: 5s
 
 - name: Go
   endpoint: http://localhost:8080/query
@@ -64,14 +84,18 @@ queries:
   filename: queries/basic.graphql
   expectedResultFilename: queries/basic.json
 
-- name: Object List
-  filename: queries/object_list.graphql
-  expectedResultFilename: queries/object_list.json
-
 - name: Scalar List
   filename: queries/scalar_list.graphql
   expectedResultFilename: queries/scalar_list.json
 
+- name: Object List
+  filename: queries/object_list.graphql
+  expectedResultFilename: queries/object_list.json
+
+#- name: Interface List
+#  filename: queries/interface_list.graphql
+#  expectedResultFilename: queries/interface_list.json
+
 - name: Introspection
   filename: queries/introspection.graphql
-  # expectedResultFilename: queries/scalar_list.json
+#  expectedResultFilename: queries/introspection.json
